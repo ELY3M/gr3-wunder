@@ -24,12 +24,12 @@ Changelog:
 1.2: Adjusted formatting for ease-of-use
 1.0: Intial Release
 */
-=['sid'];
-=['cl'];
-=['nwl'];
-=['ff'];
-=['sl'];
-if (empty(["wid"])){
+$sid=$_POST['sid'];
+$cl=$_POST['cl'];
+$nwl=$_POST['nwl'];
+$ff=$_POST['ff'];
+$sl=$_POST['sl'];
+if (empty($_GET["wid"])){
 echo"
 <html>
 <head>
@@ -62,20 +62,20 @@ form#two #button1:hover, form#two #button2:hover {color:#fff; background:#414d59
 </head>
 ";
 // Really bad way of shortening the URL, I know. But it works.
-if (!empty(['sid'])){
-if (!empty()){ = "wid=";}
-if (!empty()){
- = "&citylabel=";
-if (!empty()){ = "&slabel=";}}
-if (!empty()){ = "&nwsmode=";}
-if (!empty() and  != ""){ = "&font=";}
+if (!empty($_POST['sid'])){
+if (!empty($sid)){$wcheck = "wid=$sid";}
+if (!empty($cl)){
+        $ccheck = "&citylabel=$cl";
+    if (!empty($sl)){$scheck = "&slabel=$sl";}}             
+if (!empty($nwl)){$nwscheck = "&nwsmode=$nwl";}
+if (!empty($ff) and $ff != ""){$fontcheck = "&font=$ff";}
 echo"
 <form id = \"two\"> 
 <fieldset id=\"URL\">
     <legend>YOUR URL</legend>
     <p>Your url is...<br><br>
 <SCRIPT LANGUAGE=\"JavaScript\">
-document.write(location.href + '?');
+document.write(location.href + '?$wcheck$ccheck$nwscheck$fontcheck$scheck');
 </SCRIPT>
 <br><br>
 Please COPY and PASTE that URL into GRx
@@ -88,38 +88,38 @@ echo"
 document.write('<form id=\"two\" action=\"' + location.href +'\" method=\"post\">');
 </SCRIPT>
   <fieldset id=\"basics\">
-<legend>The Basics</legend>
-<label for=\"stationid\">Station ID's : </label> 
-<input name=\"sid\" id=\"lastname\" type=\"text\" class=\"sid\" tabindex=\"1\" />
-<p>Station ID's are to be entered <i>sepearated by commas</i>. Example: KMIBRONS2,KMIBATTL5<BR><BR>
-To Find Station ID's...<br>1)Go to <a href=\"http://www.wunderground.com/\">Weather Underground's 
-Website</a><br>2)Enter your ZIP Code.<br>3)Go <i>all</i> the way to the bottom to the \"Weather Stations\" section.<br>4) Select the Weather Station you want.<br>5) When the data comes up, you'll see \"<i>HISTORY FOR (Station ID)</i>\". If entering manually, Station ID's must be in UPPERCASE.</p>
+        <legend>The Basics</legend>
+        <label for=\"stationid\">Station ID's : </label> 
+        <input name=\"sid\" id=\"lastname\" type=\"text\" class=\"sid\" tabindex=\"1\" />
+        <p>Station ID's are to be entered <i>sepearated by commas</i>. Example: KMIBRONS2,KMIBATTL5<BR><BR>
+        To Find Station ID's...<br>1)Go to <a href=\"http://www.wunderground.com/\">Weather Underground's 
+        Website</a><br>2)Enter your ZIP Code.<br>3)Go <i>all</i> the way to the bottom to the \"Weather Stations\" section.<br>4) Select the Weather Station you want.<br>5) When the data comes up, you'll see \"<i>HISTORY FOR (Station ID)</i>\". If entering manually, Station ID's must be in UPPERCASE.</p>
   </fieldset>
   <fieldset id=\"nws\">
-<legend>NWS / Meterologist / Weather Buff Friendy Options</legend>
-<label for=\"nwlabel\">NWS Mode On </label>
-<input name=\"nwl\" id=\"nwl\" type=\"radio\" value=\"on\" tabindex=\"20\" />
-<br />
-<label for=\"nwlabel\">NWS Mode Off</label>
-<input name=\"nwl\" id=\"nwl\" type=\"radio\" checked  value=\"\" tabindex=\"21\" />
+        <legend>NWS / Meterologist / Weather Buff Friendy Options</legend>
+        <label for=\"nwlabel\">NWS Mode On </label>
+        <input name=\"nwl\" id=\"nwl\" type=\"radio\" value=\"on\" tabindex=\"20\" />
+        <br />
+        <label for=\"nwlabel\">NWS Mode Off</label>
+        <input name=\"nwl\" id=\"nwl\" type=\"radio\" checked  value=\"\" tabindex=\"21\" />
   </fieldset>
   <fieldset id=\"additional\">
-<legend>Additional Settings</legend>
-<br />
-    <label for=\"clabel\">Text Labels On </label>
-<input name=\"cl\" id=\"cl\" type=\"radio\" value=\"on\" tabindex=\"20\" />
-<label for=\"clabel\">Text Labels Off</label> 
-<input name=\"cl\" id=\"cl\" type=\"radio\" checked value=\"\" tabindex=\"21\" />
-<p>If Text Lables are selected <b>ON</b>, please select an option below. Otherwise, skip this step</p>
-<br />
-<label for=\"slabel\">City Name </label> 
-<input name=\"sl\" id=\"sl\" type=\"radio\" value=\"\" tabindex=\"22\" />
-<br />
-<label for=\"slabel\">Station ID</label> 
-<input name=\"sl\" checked id=\"sl\" type=\"radio\" value=\"station\" tabindex=\"23\"  />
-<p>If you'd like to change the <i>font</i>, please enter your Font Face below.<br><i>(Default to <b>Courier New</b>)</i></p><br>
-<label for=\"ff\">Font Face : </label> 
-<input name=\"ff\" id=\"ff\" type=\"text\" tabindex=\"1\" /><br><br>
+        <legend>Additional Settings</legend>
+        <br />
+        <label for=\"clabel\">Text Labels On </label>
+        <input name=\"cl\" id=\"cl\" type=\"radio\" value=\"on\" tabindex=\"20\" />
+        <label for=\"clabel\">Text Labels Off</label> 
+        <input name=\"cl\" id=\"cl\" type=\"radio\" checked value=\"\" tabindex=\"21\" />
+        <p>If Text Lables are selected <b>ON</b>, please select an option below. Otherwise, skip this step</p>
+        <br />
+        <label for=\"slabel\">City Name </label> 
+        <input name=\"sl\" id=\"sl\" type=\"radio\" value=\"\" tabindex=\"22\" />
+        <br />
+        <label for=\"slabel\">Station ID</label> 
+        <input name=\"sl\" checked id=\"sl\" type=\"radio\" value=\"station\" tabindex=\"23\"  />
+        <p>If you'd like to change the <i>font</i>, please enter your Font Face below.<br><i>(Default to <b>Courier New</b>)</i></p><br>
+        <label for=\"ff\">Font Face : </label> 
+        <input name=\"ff\" id=\"ff\" type=\"text\" tabindex=\"1\" /><br><br>
   </fieldset>
   <p>
   <input id=\"button1\" type=\"submit\" value=\"Send\" /> 
@@ -129,27 +129,27 @@ Website</a><br>2)Enter your ZIP Code.<br>3)Go <i>all</i> the way to the bottom t
   
   <form id=\"two\">
     <fieldset id=\"faq\">
-<legend>F.A.Q</legend>
-<p>This area is designed to give a nice explaination of what each option does.</p>
-</fieldset>
-<fieldset id=\"nwsfaq\">
-<legend>NWS / Meterologist / Weather Buff Friendy Options</legend>
-<label for=\"nwlabel\">NWS Mode On </label><br>
-<p><i>This option turns on \"NWS Mode\" for the placefile. See <a href=\"/img/wu/nwson.pn
-<br /><br>
-<label for=\"nwlabel\">NWS Mode Off</label><br>
-<p><i>This option obviously turns off \"NWS Mode\" for the placefile. See <a href=\"/img/wunderground_screenshot.jpg\">a screenshot</a> of NWS mode turned off <u>with no other options</u></i>
-</fieldset>
-<fieldset id=\"additional\">
-<legend>Additional Settings</legend>
-<br />
-<label for=\"clabel\">Text Labels On </label><br>
-<p><i>This option turns on the Text Labels for the placefile. See <a href=\"/img/wu/labelon.png\">a screenshot</a> of Text mode turned on <u>with no other options</u></i><br><br>
-See <a href=\"/img/wu/labelon_nws.png\">a screenshot</a> of Text mode turned on <u>with NWS Mode enabled</u></i><br><br>
-<label for=\"clabel\">Text Labels Off</label><br>
-<p><i>This option turns off the Text Labels for the placefile. See <a href=\"/img/wunderground_screenshot.jpg\">a screenshot</a> of Text mode turned off <u>with no other options</u></i><br><br>
-See <a href=\"/img/wu/labeloff_nws.png\">a screenshot</a> of Text mode turned off <u>with NWS Mode enabled</u></i><br><br>
-</fieldset>
+            <legend>F.A.Q</legend>
+            <p>This area is designed to give a nice explaination of what each option does.</p>
+    </fieldset>
+    <fieldset id=\"nwsfaq\">
+            <legend>NWS / Meterologist / Weather Buff Friendy Options</legend>
+            <label for=\"nwlabel\">NWS Mode On </label><br>
+                <p><i>This option turns on \"NWS Mode\" for the placefile. See <a href=\"/img/wu/nwson.png\">a screenshot</a> of NWS mode turned on <u>with no other options</u></i>
+            <br /><br>
+            <label for=\"nwlabel\">NWS Mode Off</label><br>
+                <p><i>This option obviously turns off \"NWS Mode\" for the placefile. See <a href=\"/img/wunderground_screenshot.jpg\">a screenshot</a> of NWS mode turned off <u>with no other options</u></i>
+    </fieldset>
+    <fieldset id=\"additional\">
+            <legend>Additional Settings</legend>
+            <br />
+            <label for=\"clabel\">Text Labels On </label><br>
+                <p><i>This option turns on the Text Labels for the placefile. See <a href=\"/img/wu/labelon.png\">a screenshot</a> of Text mode turned on <u>with no other options</u></i><br><br>
+                See <a href=\"/img/wu/labelon_nws.png\">a screenshot</a> of Text mode turned on <u>with NWS Mode enabled</u></i><br><br>
+            <label for=\"clabel\">Text Labels Off</label><br>
+                <p><i>This option turns off the Text Labels for the placefile. See <a href=\"/img/wunderground_screenshot.jpg\">a screenshot</a> of Text mode turned off <u>with no other options</u></i><br><br>
+                See <a href=\"/img/wu/labeloff_nws.png\">a screenshot</a> of Text mode turned off <u>with NWS Mode enabled</u></i><br><br>
+                </fieldset>
   </p></form>";
 } echo "
 
@@ -158,29 +158,29 @@ See <a href=\"/img/wu/labeloff_nws.png\">a screenshot</a> of Text mode turned of
 // tell the browser that this is a text file
 header('Content-type: text/plain');
 // xml parsing function I found on the net
-function value_in(, ,  = true) {
-    if ( == false) {
+function value_in($element_name, $xml, $content_only = true) {
+    if ($xml == false) {
         return false;
     }
-     = preg_match('#<'..'(?:\s+[^>]+)?>(.*?)'.
-            '</'..'>#s', , );
-    if ( != false) {
-        if () {
-            return [1];  //ignore the enclosing tags
+    $found = preg_match('#<'.$element_name.'(?:\s+[^>]+)?>(.*?)'.
+            '</'.$element_name.'>#s', $xml, $matches);
+    if ($found != false) {
+        if ($content_only) {
+            return $matches[1];  //ignore the enclosing tags
         } else {
-            return [0];  //return the full pattern match
+            return $matches[0];  //return the full pattern match
         }
     }
     // No match found: return false.
     return false;
 }
-=['font'];
-if (empty()){
- = "Courier New";
+$font=$_GET['font'];
+if (empty($font)){
+$font = "Courier New";
 }
-=['thold'];
-if (empty()){
- = "999";
+$placefile_threshold=$_GET['thold'];
+if (empty($placefile_threshold)){
+    $placefile_threshold = "999";
 }
 // Start the Placefile
 echo "
@@ -189,90 +189,91 @@ echo "
 ;Version: 2.6 beta
 ;2009/03/30 0319UTC
 Refresh: 1
-Threshold: ;
+Threshold: $placefile_threshold;
 Title: WX Underground
-Font: 1, 11, 0, \"\"
+Font: 1, 11, 0, \"$font\"
 IconFile: 1, 16, 16, 9, 9, \"http://www.andrewglenn.net/img/grx_icon.png\"
 \n";
 
 // getting the variables
 
 // weather underground station ID
-=split(",", ["wid"]);
+$wids=split(",", $_GET["wid"]);
 // Get the city label data from the form
-=["citylabel"];
+$citylabel=$_GET["citylabel"];
 // ... and the NWS form
-=["nwsmode"];
+$nwsmode=$_GET["nwsmode"];
 // ... and the station label
-=["slabel"];
-foreach( as ) {
+$slabel=$_GET["slabel"];
+foreach($wids as $wid) {
 // grabbing the data
- = file_get_contents("http://api.wunderground.com/weatherstation/WXCurrentObXML.asp?ID=");
+$xmldata = file_get_contents("http://api.wunderground.com/weatherstation/WXCurrentObXML.asp?ID=$wid");
 // location
- = value_in('full', );
+$location = value_in('full', $xmldata);
 //city
- = value_in('city', );
+$city = value_in('city', $xmldata);
 //gps lat
- = value_in('latitude', );
+$gps_lat = value_in('latitude', $xmldata);
 //gps long
- = value_in('longitude', );
+$gps_long = value_in('longitude', $xmldata);
 //last observation time
- = value_in('observation_time', );
+$obs_time = value_in('observation_time', $xmldata);
 //tempature
- = value_in('temp_f', );
+$temp = value_in('temp_f', $xmldata);
 //humidity
- = value_in('relative_humidity', );
+$rel_humidity = value_in('relative_humidity', $xmldata);
 //dewpoint
- = value_in('dewpoint_f', );
+$dewpoint = value_in('dewpoint_f', $xmldata);
 //wind direction
- = value_in('wind_dir', );
+$wind_dir = value_in('wind_dir', $xmldata);
 //wind MPH
- = value_in('wind_mph', );
+$wind_mph = value_in('wind_mph', $xmldata);
 //wind gust MPH
- = value_in('wind_gust_mph', );
+$wind_gust_mph = value_in('wind_gust_mph', $xmldata);
 //wind chill
- = value_in('windchill_f', );
+$wind_chill = value_in('windchill_f', $xmldata);
 //heat index
- = value_in('heat_index_f', );
+$heat_index = value_in('heat_index_f', $xmldata);
 // barometirc pressure (milibars)
- = value_in('pressure_mb', );
+$pressure_mb = value_in('pressure_mb', $xmldata);
 // barometric pressure (inches)
- = value_in('pressure_in', );
+$pressure_in = value_in('pressure_in', $xmldata);
 // Check to see if the user wants the city label displayed.
-if ( == "on"){
-if ( != "station"){
-="Text: 15, 10, 1, \"\"";
-} else {
-="Text: 15, 10, 1, \"\"";
-}
+if ($citylabel == "on"){
+    if ($slabel != "station"){
+        $clabel="Text: 15, 10, 1, \"$city\"";
+    } else {
+        $clabel="Text: 15, 10, 1, \"$wid\"";
+    }
 }
 // Check to see if the user wants the data right on the screen (like the metar stuffs)
 
-if ( == "on"){
+if ($nwsmode == "on"){
 // cleaning up the number format for each variable...
- = number_format();
- = number_format();
- = number_format();
- = number_format();
+$temp = number_format($temp);
+$dewpoint = number_format($dewpoint);
+$wind_mph = number_format($wind_mph);
+$wind_gust_mph = number_format($wind_gust_mph);
 // some conditional stuff. :)
-="  Text:  -17, 13, 1, \"  \"
-  Text:  0, -19, 1, \" G\"
-  Text: 25, 13, 1, \"  \"";
+$dlabel="  Text:  -17, 13, 1, \" $temp \"
+  Text:  0, -19, 1, \"$wind_dir$wind_mph G$wind_gust_mph\"
+  Text: 25, 13, 1, \" $dewpoint \"";
 
-if ( == "on"){
-        if ( != "station"){
-                ="Text: 0, -35, 1, \"\"";
+if ($citylabel == "on"){
+        if ($slabel != "station"){
+                $clabel="Text: 0, -35, 1, \"$city\"";
                 } else {
-="Text: 0, -35, 1, \"\"";
+                $clabel="Text: 0, -35, 1, \"$wid\"";
 }}}
 // Dump the data
-if ( != ""){
-echo "Object: ,
-Icon: 0, 0, 000, 1, 1, \"\n\n\nTemp:  F | Dewpoint:  F\nWind Chill:  F | Heat Index:  F\nWind:  @  MPH | Gust:  MPH  \nHumidity: % | Pressure: /\"
-
-
+if ($gps_lat != ""){
+echo "Object: $gps_lat,$gps_long
+Icon: 0, 0, 000, 1, 1, \"$wid\\n$location\\n$obs_time\\nTemp: $temp F | Dewpoint: $dewpoint F\\nWind Chill: $wind_chill F | Heat Index: $heat_index F\\nWind: $wind_dir @ $wind_mph MPH | Gust: $wind_gust_mph MPH  \\nHumidity: $rel_humidity% | Pressure: $pressure_in/$pressure_mb\"
+$clabel
+$dlabel
 End:\n";
 } else {
-echo "; The station  currently has no data available. Please try back later.\n\n";
+echo "; The station $wid currently has no data available. Please try back later.\n\n";
 }}}
 ?>
+
